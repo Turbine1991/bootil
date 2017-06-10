@@ -17,6 +17,7 @@
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/select.h>
+#include <sys/wait.h>
 
 #ifdef X11_GRAPHICAL
 #include <X11/Xlib.h>
@@ -219,9 +220,10 @@ namespace Bootil
 			if ( pid != 0 )
 			{
 				bool isOk = ( pid > 0 );
+				int waitTime = 1;
 
 				if ( isOk && AndWait )
-				{ wait(); }
+				{ wait(&waitTime); }
 			}
 			else
 			{
